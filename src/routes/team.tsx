@@ -69,6 +69,13 @@ const teamYears = [
               "Quality you can taste - In-N-Out",
             linkedin: "https://www.linkedin.com/in/alx-jam-clrk/",
           },
+          {
+            name: "Elizabeth Colón",
+            role: "Sponsorship Lead",
+            org: "SHPE",
+            headshot:"/team/2027/lizColón.jpeg",
+            linkedin: "https://www.linkedin.com/in/elizabeth-l-colon/",
+          },
         ],
       },
     ],

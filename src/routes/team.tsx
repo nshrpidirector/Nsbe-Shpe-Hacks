@@ -26,7 +26,7 @@ const teamYears = [
         members: [
           {
             name: "Aliyah Zaizay",
-            role: "Hackathon Co-Director",
+            role: "Hackathon Director",
             org: "NSBE Hackathon Director",
             headshot: "/team/2027/AliyahZ.jpg",
             quote:

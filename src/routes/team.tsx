@@ -28,7 +28,7 @@ const teamYears = [
             name: "Aliyah Zaizay",
             role: "Hackathon Director",
             org: "NSBE Hackathon Director",
-            headshot: "/team/2027/AliyahZ.jpg",
+            headshot: "/team/2027/aliyahHS.jpg",
             quote:
               "There is no growth without change, no change without fear or loss, and no loss without pain",
             linkedin: "https://www.linkedin.com/in/aliyah-zaizay/",

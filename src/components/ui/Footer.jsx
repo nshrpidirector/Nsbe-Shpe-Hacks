@@ -6,6 +6,7 @@ const quickLinks = [
   { href: "/schedule", label: "Schedule" },
   { href: "/sponsors", label: "Sponsors" },
   { href: "/team", label: "Team" },
+  { href: "/get-involved", label: "Get Involved" },
   { href: "/#faq", label: "FAQ" },
 ];
 

@@ -125,10 +125,10 @@ function TeamPage() {
         </div>
 
         <a
-          href="#"
+          href="/get-involved"
           className="w-fit rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
         >
-          Become a Volunteer!
+          Get Involved
         </a>
       </div>
 

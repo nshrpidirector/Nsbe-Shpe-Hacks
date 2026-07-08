@@ -13,6 +13,7 @@ import { Route as TeamRouteImport } from './routes/team'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 import { Route as PrizesRouteImport } from './routes/prizes'
+import { Route as GetInvolvedRouteImport } from './routes/get-involved'
 import { Route as NSHx26RouteImport } from './routes/NSHx26'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NSHx26WinnersRouteImport } from './routes/NSHx26.winners'
@@ -36,6 +37,11 @@ const ScheduleRoute = ScheduleRouteImport.update({
 const PrizesRoute = PrizesRouteImport.update({
   id: '/prizes',
   path: '/prizes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GetInvolvedRoute = GetInvolvedRouteImport.update({
+  id: '/get-involved',
+  path: '/get-involved',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NSHx26Route = NSHx26RouteImport.update({
@@ -62,6 +68,7 @@ const NSHx26PicturesRoute = NSHx26PicturesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/NSHx26': typeof NSHx26RouteWithChildren
+  '/get-involved': typeof GetInvolvedRoute
   '/prizes': typeof PrizesRoute
   '/schedule': typeof ScheduleRoute
   '/sponsors': typeof SponsorsRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/NSHx26': typeof NSHx26RouteWithChildren
+  '/get-involved': typeof GetInvolvedRoute
   '/prizes': typeof PrizesRoute
   '/schedule': typeof ScheduleRoute
   '/sponsors': typeof SponsorsRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/NSHx26': typeof NSHx26RouteWithChildren
+  '/get-involved': typeof GetInvolvedRoute
   '/prizes': typeof PrizesRoute
   '/schedule': typeof ScheduleRoute
   '/sponsors': typeof SponsorsRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/NSHx26'
+    | '/get-involved'
     | '/prizes'
     | '/schedule'
     | '/sponsors'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/NSHx26'
+    | '/get-involved'
     | '/prizes'
     | '/schedule'
     | '/sponsors'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/NSHx26'
+    | '/get-involved'
     | '/prizes'
     | '/schedule'
     | '/sponsors'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NSHx26Route: typeof NSHx26RouteWithChildren
+  GetInvolvedRoute: typeof GetInvolvedRoute
   PrizesRoute: typeof PrizesRoute
   ScheduleRoute: typeof ScheduleRoute
   SponsorsRoute: typeof SponsorsRoute
@@ -160,6 +173,13 @@ declare module '@tanstack/react-router' {
       path: '/prizes'
       fullPath: '/prizes'
       preLoaderRoute: typeof PrizesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/get-involved': {
+      id: '/get-involved'
+      path: '/get-involved'
+      fullPath: '/get-involved'
+      preLoaderRoute: typeof GetInvolvedRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/NSHx26': {
@@ -209,6 +229,7 @@ const NSHx26RouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NSHx26Route: NSHx26RouteWithChildren,
+  GetInvolvedRoute: GetInvolvedRoute,
   PrizesRoute: PrizesRoute,
   ScheduleRoute: ScheduleRoute,
   SponsorsRoute: SponsorsRoute,

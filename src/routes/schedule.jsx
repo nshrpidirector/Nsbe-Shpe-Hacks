@@ -61,12 +61,9 @@ function SchedulePage() {
 
       <div className="terminal-window p-8 md:p-12 text-center">
 
-        <p className="text-sm uppercase tracking-widest text-accent mb-4">
-          Schedule Coming Soon
-        </p>
-
+        
         <h1 className="text-4xl md:text-5xl font-bold">
-          Schedule to be revealed closer to the event date.
+          Schedule coming soon.
         </h1>
 
         <p className="mt-5 max-w-2xl mx-auto text-lg text-muted-foreground">
@@ -86,8 +83,8 @@ function SchedulePage() {
           </p>
 
           <p className="mt-2 text-muted-foreground">
-            The hackathon is planned to begin Saturday at 9:00 AM,
-            continue overnight, and wrap Sunday around 3:00-4:00 PM.
+            The hackathon is planned to begin Saturday at 10:00 AM,
+            continue overnight, and wrap Sunday around 4:00-5:00 PM.
           </p>
         </div>
 
@@ -125,69 +122,3 @@ function SchedulePage() {
     </div>
   );
 }
-
-/*
-function FullSchedulePage() {
-  return (
-    <div className="max-w-5xl mx-auto px-6 py-16">
-
-      <p className="text-sm uppercase tracking-widest text-muted-foreground">
-        Full 48-hour timeline
-      </p>
-
-      <h1 className="mt-3 text-4xl md:text-5xl font-bold">
-        Schedule
-      </h1>
-
-      <p className="mt-3 text-muted-foreground">
-        All times Eastern. Times subject to small adjustments.
-      </p>
-
-      <div className="mt-12 space-y-12">
-
-        {days.map((d) => (
-
-          <section key={d.day}>
-
-            <div className="flex items-center gap-3 mb-6">
-
-              <div className={`size-3 rounded-full ${d.accent}`} />
-
-              <h2 className="text-2xl font-bold">
-                {d.day}
-              </h2>
-            </div>
-
-            <div className="space-y-3">
-
-              {d.events.map((e) => (
-
-                <div
-                  key={`${d.day}-${e.time}-${e.title}`}
-                  className="flex gap-4 border border-border bg-card p-4 transition hover:border-primary/40 md:gap-8"
-                >
-
-                  <div className="w-20 shrink-0 text-sm font-mono text-muted-foreground md:w-28">
-                    {e.time}
-                  </div>
-
-                  <div>
-
-                    <div className="font-semibold text-foreground">
-                      {e.title}
-                    </div>
-
-                    <div className="text-sm text-muted-foreground">
-                      {e.desc}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-      </div>
-    </div>
-  );
-}
-*/

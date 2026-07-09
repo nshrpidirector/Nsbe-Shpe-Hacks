@@ -1,4 +1,5 @@
 
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -33,8 +34,8 @@
   --color-amber: var(--amber);
   --color-cyan: var(--cyan);
   --color-offwhite: var(--offwhite);
-  --font-display: "VT323", "IBM Plex Mono", "Courier New", monospace;
-  --font-mono: "VT323", "IBM Plex Mono", "Courier New", monospace;
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", "Courier New", monospace;
 }
 
 :root {
@@ -89,7 +90,7 @@
       radial-gradient(circle at 74% 52%, rgb(246 196 69 / 5%), transparent 26rem),
       linear-gradient(180deg, #080b0c, var(--background) 34rem);
     color: var(--foreground);
-    font-family: var(--font-mono);
+    font-family: var(--font-display);
   }
 
   ::selection {
@@ -99,6 +100,100 @@
 }
 
 @layer utilities {
+  .site-shell {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at 14% 8%, rgb(0 255 102 / 8%), transparent 24rem),
+      radial-gradient(circle at 86% 12%, rgb(227 29 56 / 10%), transparent 24rem),
+      radial-gradient(circle at 52% 0%, rgb(82 215 255 / 8%), transparent 34rem),
+      linear-gradient(180deg, #080b0c, var(--background) 34rem);
+  }
+
+  .site-shell::before,
+  .site-shell::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .site-shell::before {
+    opacity: 0.14;
+    background:
+      linear-gradient(135deg, transparent 0 44px, rgb(82 215 255 / 28%) 45px 46px, transparent 47px 108px),
+      linear-gradient(45deg, transparent 0 64px, rgb(0 255 102 / 12%) 65px 66px, transparent 67px 132px);
+    background-size: 188px 188px, 232px 232px;
+    animation: circuit-drift 48s linear infinite;
+  }
+
+  .site-shell::after {
+    opacity: 0.03;
+    background: repeating-linear-gradient(180deg, transparent 0 8px, rgb(247 247 242 / 50%) 9px, transparent 10px 18px);
+    mix-blend-mode: screen;
+  }
+
+  .site-shell > main,
+  .site-shell > footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .site-shell > header {
+    z-index: 999;
+  }
+
+  .nsh-logo-mark {
+    font-family: "VT323", "IBM Plex Mono", "Courier New", monospace;
+  }
+
+  .terminal-window,
+  pre,
+  code,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+  }
+
+  .nav-dropdown-panel {
+    display: none;
+  }
+
+  .nav-dropdown:hover .nav-dropdown-panel,
+  .nav-dropdown:focus-within .nav-dropdown-panel {
+    display: block;
+  }
+
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0.15rem;
+    height: 2px;
+    background: var(--cyan);
+    transition: right 180ms ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link:focus-visible::after {
+    right: 0;
+  }
+
+  .home-hero-cursor {
+    display: inline-block;
+    width: 0.56em;
+    height: 0.92em;
+    background: var(--primary);
+    transform: translateY(0.04em);
+    animation: cursor-block-pulse 1.15s steps(2, start) infinite;
+  }
+
   .terminal-window {
     overflow: hidden;
     border: 1px solid var(--border);
@@ -146,6 +241,22 @@
   }
 }
 
+@keyframes cursor-block-pulse {
+  50% {
+    opacity: 0.18;
+  }
+}
+
+@keyframes circuit-drift {
+  from {
+    background-position: 0 0, 0 0;
+  }
+
+  to {
+    background-position: 188px 188px, -232px 232px;
+  }
+}
+
 @keyframes blink {
   50% {
     opacity: 0;
@@ -163,6 +274,17 @@
 }
 
 @keyframes home-sponsor-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+
+@keyframes about-log {
   from {
     transform: translateX(0);
   }

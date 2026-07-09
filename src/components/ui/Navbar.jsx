@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const navLinks = [
-  { href: "/sponsors", label: "Sponsors" },
-  { href: "/team", label: "Team" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/about", label: "./ABOUT" },
+  { href: "/sponsors", label: "./SPONSOR" },
+  { href: "/#faq", label: "./FAQ" },
 ];
 
 const eventLinks = [
@@ -17,163 +17,99 @@ const nshx26Links = [
   { href: "/NSHx26/winners#pictures", label: "Pictures" },
 ];
 
+function Dropdown({ label, links, accent = "cyan" }) {
+  const hoverClass = accent === "amber" ? "hover:text-amber" : "hover:text-cyan";
+
+  return (
+    <div className="nav-dropdown relative">
+      <button
+        type="button"
+        className="rounded-md px-3 py-2 text-sm font-bold uppercase tracking-[0.26em] text-muted-foreground transition hover:text-foreground"
+      >
+        {label}
+      </button>
+
+      <div className="nav-dropdown-panel absolute left-0 top-full z-[9999] min-w-48 pt-2">
+        <div className="rounded-lg border border-border bg-background/98 p-2 shadow-2xl backdrop-blur-xl">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={`block rounded-md px-3 py-2 text-sm text-muted-foreground transition hover:bg-secondary ${hoverClass}`}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-xl bg-background/82 border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* LOGO */}
-        <div className="flex items-center">
-          <a
-            href="/"
-            className="font-mono text-2xl font-bold tracking-normal text-foreground transition hover:text-cyan"
-          >
-            NSH @<span className="text-rpi">RPI</span>
-            <span className="text-primary">_</span>
-          </a>
-        </div>
+    <header className="sticky top-0 z-[999] overflow-visible bg-transparent">
+      <div className="mx-auto flex h-20 max-w-[118rem] items-center justify-between px-7 md:px-14">
+        <a
+          href="/"
+          className="nsh-logo-mark text-xl font-bold tracking-normal text-foreground transition hover:text-cyan"
+          aria-label="NSH at RPI home"
+        >
+          NSH @<span className="text-rpi">RPI</span>
+          <span className="text-primary">_</span>
+        </a>
 
-        {/* DESKTOP NAV */}
-        <nav className="hidden md:flex items-center gap-2">
-          <a
-            href="/"
-            className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary rounded-md transition"
-          >
-            Home
+        <nav className="hidden items-center gap-8 md:flex">
+          <a href="/" className="px-3 py-2 text-sm font-bold uppercase tracking-[0.26em] text-muted-foreground transition hover:text-foreground">
+            ./HOME
           </a>
 
-          <div className="relative group">
-            <button
-              type="button"
-              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary rounded-md transition"
-            >
-              Events
-            </button>
-
-            <div className="absolute left-0 top-full hidden min-w-44 pt-2 group-hover:block group-focus-within:block">
-              <div className="rounded-lg border border-border bg-background/95 p-2 shadow-lg backdrop-blur-xl">
-                {eventLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-cyan transition"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="relative group">
-            <button
-              type="button"
-              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary rounded-md transition"
-            >
-              NSHx26
-            </button>
-
-            <div className="absolute left-0 top-full hidden min-w-44 pt-2 group-hover:block group-focus-within:block">
-              <div className="rounded-lg border border-border bg-background/95 p-2 shadow-lg backdrop-blur-xl">
-                {nshx26Links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className="block rounded-md px-3 py-2 text-sm text-muted-foreground hover:bg-secondary hover:text-amber transition"
-                  >
-                    {link.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
+          <Dropdown label="./EVENTS" links={eventLinks} />
+          <Dropdown label="./NSHX26" links={nshx26Links} accent="amber" />
 
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="px-3 py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-secondary rounded-md transition"
+              className="px-3 py-2 text-sm font-bold uppercase tracking-[0.26em] text-muted-foreground transition hover:text-foreground"
             >
               {link.label}
             </a>
           ))}
-
-          <a
-            href="/#register"
-            className="ml-2 px-4 py-2 rounded-md bg-primary hover:opacity-90 text-primary-foreground font-semibold text-sm transition"
-          >
-            Register
-          </a>
         </nav>
 
-        {/* MOBILE BUTTON */}
+        {/* <a
+          href="/#register"
+          className="hidden rounded-2xl border border-border/70 px-6 py-3 text-sm font-black uppercase tracking-[0.28em] text-foreground transition hover:border-primary/70 hover:text-primary md:block"
+        >
+          Register &gt;_
+        </a> */}
+
         <button
+          type="button"
           onClick={() => setOpen(!open)}
-          className="md:hidden text-foreground"
+          className="md:hidden rounded-md border border-border px-3 py-2 text-foreground"
+          aria-label="Toggle navigation menu"
         >
           ☰
         </button>
       </div>
 
-      {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden border-t border-border bg-background">
-          <div className="px-6 py-4 flex flex-col gap-2">
-            <a
-              href="/"
-              className="text-muted-foreground hover:text-foreground py-2"
-              onClick={() => setOpen(false)}
-            >
-              Home
-            </a>
-
-            <div className="border-y border-border/70 py-2">
-              <div className="text-xs uppercase text-muted-foreground mb-1">
-                Events
-              </div>
-              {eventLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block text-muted-foreground hover:text-foreground py-2 pl-3"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
-            <div className="border-b border-border/70 py-2">
-              <div className="text-xs uppercase text-muted-foreground mb-1">
-                NSHx26
-              </div>
-              {nshx26Links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block text-muted-foreground hover:text-foreground py-2 pl-3"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-
+        <div className="md:hidden border-t border-border bg-background/96 backdrop-blur-xl">
+          <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-4">
+            <MobileLink href="/" label="./HOME" onClick={() => setOpen(false)} />
+            <MobileGroup title="./EVENTS" links={eventLinks} onClick={() => setOpen(false)} />
+            <MobileGroup title="./NSHX26" links={nshx26Links} onClick={() => setOpen(false)} />
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-muted-foreground hover:text-foreground py-2"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
+              <MobileLink key={link.href} {...link} onClick={() => setOpen(false)} />
             ))}
-
             <a
               href="/#register"
-              className="mt-2 px-4 py-2 rounded-md bg-primary text-primary-foreground text-center font-semibold"
+              className="mt-2 rounded-md bg-primary px-4 py-2 text-center font-semibold text-primary-foreground"
+              onClick={() => setOpen(false)}
             >
               Register
             </a>
@@ -181,5 +117,31 @@ export function Navbar() {
         </div>
       )}
     </header>
+  );
+}
+
+function MobileLink({ href, label, onClick }) {
+  return (
+    <a href={href} className="py-2 text-muted-foreground hover:text-foreground" onClick={onClick}>
+      {label}
+    </a>
+  );
+}
+
+function MobileGroup({ title, links, onClick }) {
+  return (
+    <div className="border-y border-border/70 py-2">
+      <div className="mb-1 text-xs uppercase tracking-normal text-cyan">{title}</div>
+      {links.map((link) => (
+        <a
+          key={link.href}
+          href={link.href}
+          className="block py-2 pl-3 text-muted-foreground hover:text-foreground"
+          onClick={onClick}
+        >
+          <span className="text-primary">&gt;</span> {link.label}
+        </a>
+      ))}
+    </div>
   );
 }

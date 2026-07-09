@@ -3,7 +3,7 @@ import { Footer } from "./ui/Footer";
 import { Outlet } from "@tanstack/react-router";
 export function Layout() {
     return (
-      <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <div className="site-shell min-h-screen text-foreground flex flex-col">
   
         <Navbar />
   

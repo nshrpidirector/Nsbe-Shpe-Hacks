@@ -1,87 +1,70 @@
-import Logo from "../../assets/NSHLogo.png";
-
-const quickLinks = [
+const exploreLinks = [
   { href: "/", label: "Home" },
-  { href: "/#event-info", label: "Event Info" },
+  { href: "/about", label: "About" },
   { href: "/schedule", label: "Schedule" },
-  { href: "/sponsors", label: "Sponsors" },
-  { href: "/team", label: "Team" },
-  { href: "/get-involved", label: "Get Involved" },
-  { href: "/#faq", label: "FAQ" },
+  { href: "/prizes", label: "Prizes" },
 ];
 
-const followLinks = [
-  // { href: "#", label: "Devpost" },
+const communityLinks = [
+  { href: "/sponsors", label: "Sponsors" },
+  { href: "/about#team", label: "Team" },
+  { href: "/get-involved", label: "Get Involved" },
   { href: "https://www.instagram.com/rpinsbeshpe_hacks/", label: "Instagram" },
-  // { href: "#", label: "YouTube" },
-  // { href: "#", label: "Discord" },
+  { href: "mailto:nshrpi.director@gmail.com", label: "Contact" },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border mt-20 bg-background/70">
-      <div className="max-w-7xl mx-auto px-6 py-12 grid gap-10 lg:grid-cols-[1.2fr_0.8fr_0.8fr]">
+    <footer className="mt-20 border-t border-border bg-background/70">
+      <div className="mx-auto grid max-w-7xl gap-8 px-6 py-10 md:grid-cols-[1.4fr_0.7fr_0.7fr]">
         <div>
-          <img
-            src={Logo}
-            alt="NSH @ RPI logo"
-            className="h-12 w-auto object-contain"
-          />
-
-          <p className="mt-5 max-w-xl text-sm leading-6 text-muted-foreground">
-            NSH @ RPI is a weekend hackathon in New York's Capital Region,
-            hosted by Rensselaer Polytechnic Institute. Join us in 2027 as we
-            hack for community impact.
-          </p>
-
-          <p className="mt-5 text-xs text-muted-foreground">
-            © {new Date().getFullYear()} NSBE x SHPE Hacks at RPI
-          </p>
-        </div>
-
-        <div>
-          <h2 className="font-mono text-sm font-bold uppercase text-foreground">
-            Quick Links
-          </h2>
-          <div className="mt-4 grid gap-2 text-sm text-muted-foreground">
-            {quickLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="w-fit hover:text-cyan transition"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="font-mono text-sm font-bold uppercase text-foreground">
-            Follow Us
-          </h2>
-          <div className="mt-4 grid gap-2 text-sm text-muted-foreground">
-            {followLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.href === "#" ? undefined : "_blank"}
-                rel={link.href === "#" ? undefined : "noreferrer"}
-                className="w-fit hover:text-amber transition"
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* <a
-            href="#"
-            className="mt-5 inline-block rounded-md border border-primary/60 px-4 py-2 text-sm font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition"
+          <a
+            href="/"
+            className="font-mono text-2xl font-bold tracking-normal text-foreground transition hover:text-cyan"
           >
-            Join our Discord
-          </a> */}
+            NSH @<span className="text-rpi">RPI</span>
+            <span className="text-primary">_</span>
+          </a>
+
+          <p className="mt-4 max-w-md text-sm leading-6 text-muted-foreground">
+            Student-led by NSBE and SHPE. Built for community, creativity, and
+            technical growth.
+          </p>
         </div>
+
+        <FooterColumn title="Explore" links={exploreLinks} />
+        <FooterColumn title="Community" links={communityLinks} />
+
+      </div>
+
+      <div className="mx-auto max-w-7xl border-t border-border px-6 pb-6 pt-4 text-xs text-muted-foreground">
+        Built by students at RPI. © {new Date().getFullYear()} NSBE x SHPE
+        Hacks.
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ title, links }) {
+  return (
+    <div>
+      <h2 className="font-mono text-sm font-bold uppercase text-foreground">
+        {title}
+      </h2>
+
+      <div className="mt-4 grid gap-2 text-sm text-muted-foreground">
+        {links.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+            className="w-fit transition hover:text-cyan"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
   );
 }

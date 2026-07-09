@@ -9,21 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TeamRouteImport } from './routes/team'
 import { Route as SponsorsRouteImport } from './routes/sponsors'
 import { Route as ScheduleRouteImport } from './routes/schedule'
 import { Route as PrizesRouteImport } from './routes/prizes'
 import { Route as GetInvolvedRouteImport } from './routes/get-involved'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as NSHx26RouteImport } from './routes/NSHx26'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as NSHx26WinnersRouteImport } from './routes/NSHx26.winners'
 import { Route as NSHx26PicturesRouteImport } from './routes/NSHx26.pictures'
 
-const TeamRoute = TeamRouteImport.update({
-  id: '/team',
-  path: '/team',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SponsorsRoute = SponsorsRouteImport.update({
   id: '/sponsors',
   path: '/sponsors',
@@ -42,6 +37,11 @@ const PrizesRoute = PrizesRouteImport.update({
 const GetInvolvedRoute = GetInvolvedRouteImport.update({
   id: '/get-involved',
   path: '/get-involved',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NSHx26Route = NSHx26RouteImport.update({
@@ -68,22 +68,22 @@ const NSHx26PicturesRoute = NSHx26PicturesRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/NSHx26': typeof NSHx26RouteWithChildren
+  '/about': typeof AboutRoute
   '/get-involved': typeof GetInvolvedRoute
   '/prizes': typeof PrizesRoute
   '/schedule': typeof ScheduleRoute
   '/sponsors': typeof SponsorsRoute
-  '/team': typeof TeamRoute
   '/NSHx26/pictures': typeof NSHx26PicturesRoute
   '/NSHx26/winners': typeof NSHx26WinnersRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/NSHx26': typeof NSHx26RouteWithChildren
+  '/about': typeof AboutRoute
   '/get-involved': typeof GetInvolvedRoute
   '/prizes': typeof PrizesRoute
   '/schedule': typeof ScheduleRoute
   '/sponsors': typeof SponsorsRoute
-  '/team': typeof TeamRoute
   '/NSHx26/pictures': typeof NSHx26PicturesRoute
   '/NSHx26/winners': typeof NSHx26WinnersRoute
 }
@@ -91,11 +91,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/NSHx26': typeof NSHx26RouteWithChildren
+  '/about': typeof AboutRoute
   '/get-involved': typeof GetInvolvedRoute
   '/prizes': typeof PrizesRoute
   '/schedule': typeof ScheduleRoute
   '/sponsors': typeof SponsorsRoute
-  '/team': typeof TeamRoute
   '/NSHx26/pictures': typeof NSHx26PicturesRoute
   '/NSHx26/winners': typeof NSHx26WinnersRoute
 }
@@ -104,33 +104,33 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/NSHx26'
+    | '/about'
     | '/get-involved'
     | '/prizes'
     | '/schedule'
     | '/sponsors'
-    | '/team'
     | '/NSHx26/pictures'
     | '/NSHx26/winners'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/NSHx26'
+    | '/about'
     | '/get-involved'
     | '/prizes'
     | '/schedule'
     | '/sponsors'
-    | '/team'
     | '/NSHx26/pictures'
     | '/NSHx26/winners'
   id:
     | '__root__'
     | '/'
     | '/NSHx26'
+    | '/about'
     | '/get-involved'
     | '/prizes'
     | '/schedule'
     | '/sponsors'
-    | '/team'
     | '/NSHx26/pictures'
     | '/NSHx26/winners'
   fileRoutesById: FileRoutesById
@@ -138,22 +138,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   NSHx26Route: typeof NSHx26RouteWithChildren
+  AboutRoute: typeof AboutRoute
   GetInvolvedRoute: typeof GetInvolvedRoute
   PrizesRoute: typeof PrizesRoute
   ScheduleRoute: typeof ScheduleRoute
   SponsorsRoute: typeof SponsorsRoute
-  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/team': {
-      id: '/team'
-      path: '/team'
-      fullPath: '/team'
-      preLoaderRoute: typeof TeamRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/sponsors': {
       id: '/sponsors'
       path: '/sponsors'
@@ -180,6 +173,13 @@ declare module '@tanstack/react-router' {
       path: '/get-involved'
       fullPath: '/get-involved'
       preLoaderRoute: typeof GetInvolvedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/NSHx26': {
@@ -229,11 +229,11 @@ const NSHx26RouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   NSHx26Route: NSHx26RouteWithChildren,
+  AboutRoute: AboutRoute,
   GetInvolvedRoute: GetInvolvedRoute,
   PrizesRoute: PrizesRoute,
   ScheduleRoute: ScheduleRoute,
   SponsorsRoute: SponsorsRoute,
-  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

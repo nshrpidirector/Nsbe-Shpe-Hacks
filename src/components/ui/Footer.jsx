@@ -26,10 +26,6 @@ export function Footer() {
             <span className="text-primary">_</span>
           </a>
 
-          <p className="mt-4 max-w-md text-sm leading-6 text-muted-foreground">
-            Student-led by NSBE and SHPE. Built for community, creativity, and
-            technical growth.
-          </p>
         </div>
 
         <FooterColumn title="Explore" links={exploreLinks} />

@@ -33,7 +33,7 @@ const organizations = [
     glow: "from-amber/12",
     accent: "bg-amber",
     logo: "/about/shpeLogo.png",
-    logoClass: "max-h-20 max-w-[360px] object-contain",
+    logoClass: "max-h-24 max-w-[420px] object-contain",
     description:
       "The Society of Hispanic Professional Engineers (SHPE) empowers the Hispanic community to reach its fullest potential and make an impact through STEM awareness, access, support, and development. As the largest Latino technical organization in the country, SHPE connects students and professionals through a nationwide network of chapters.",
   },

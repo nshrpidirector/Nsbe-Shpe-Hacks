@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, linkOptions } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
   component: AboutPage,
@@ -84,6 +84,17 @@ const committeeMembers = [
     linkedin: "https://www.linkedin.com/in/siennakargov",
     committee: "Marketing / PR",
   },
+
+  {
+    name: "Isa Reynoso",
+    linkedin: "https://www.linkedin.com/in/isa-reynoso-/",
+    committee: "Marketing / PR",
+  },
+  {
+    name: "Matthew Vintimilla",
+    linkedin: "",
+    committee: "Sponorship Outreach",
+  }
 ];
 
 function AboutPage() {

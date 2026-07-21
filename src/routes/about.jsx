@@ -32,7 +32,7 @@ const organizations = [
     color: "text-amber",
     glow: "from-amber/12",
     accent: "bg-amber",
-    logo: "/about/shpe-logo.png",
+    logo: "/about/shpeLogo.png",
     logoClass: "max-h-20 max-w-[360px] object-contain",
     description:
       "The Society of Hispanic Professional Engineers (SHPE) empowers the Hispanic community to reach its fullest potential and make an impact through STEM awareness, access, support, and development. As the largest Latino technical organization in the country, SHPE connects students and professionals through a nationwide network of chapters.",
@@ -49,6 +49,7 @@ const committeeLeads = [
   {
     name: "Lauren Caraballo",
     role: "Hackathon Co-Director",
+    headshot: "/team/2027/laurenC.jpeg",
     linkedin: "https://www.linkedin.com/in/caraballo-lauren/",
   },
   {

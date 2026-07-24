@@ -22,7 +22,7 @@ const organizations = [
     glow: "from-primary/12",
     accent: "bg-primary",
     logo: "/about/nsbe-main-logo.png",
-    logoClass: "max-h-20 max-w-[360px] object-contain",
+    logoClass: "max-h-18 max-w-[320px] object-contain",
     description:
       "The National Society of Black Engineers (NSBE) is dedicated to increasing the number of culturally responsible Black engineers who excel academically, succeed professionally, and positively impact their communities. As one of the largest student-run organizations in the country, NSBE supports thousands of students through its collegiate, alumni, and pre-collegiate chapters nationwide.",
   },
